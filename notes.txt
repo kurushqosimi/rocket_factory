@@ -1,0 +1,4 @@
+api/weather/v1 - openapi spec
+api/weather/v1/weather.openapi.yaml - general spec with ref to path to folder api/weather/v1/paths
+api/weather/v1/params - params in path, query and headers
+api/weather/v1/components - requests and responses models
