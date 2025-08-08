@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  extract-vars:
+    name: Extract Variables from Taskfile
+    runs-on: ubuntu-latest
+    outputs:
+      go-version: ${{ steps.extract.outputs.GO_VERSION }}
+      golangci-lint-version: ${{ steps.extract.outputs.GOLANGCI_LINT_VERSION }}
+      modules: ${{ steps.extract.outputs.MODULES }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Extract variables from Taskfile
+        id: extract
+        run: |
+          chmod +x .github/scripts/extract-versions.sh
+          .github/scripts/extract-versions.sh
